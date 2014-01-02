@@ -4,8 +4,7 @@ require 'rubygems'
 require 'bundler/setup'  
 # require your gems as usual 
 require 'trollop'
-require 'prawn'
-require "prawn/measurement_extensions"
+require './dot_grid_generator.rb'
 
 opts = Trollop::options do
   opt :file_name, "File Name", :type => :string, :default => "dotgrid.pdf"
@@ -17,18 +16,5 @@ opts = Trollop::options do
   opt :pages, "Number of pages", :type => :integer, :default => 1
 end
 
-Prawn::Document.generate(opts[:file_name], margin: opts[:margin], page_size: opts[:page_size]) do |pdf|
-  pages = opts[:pages]
-  spacing = opts[:spacing].mm
-  num_columns = (pdf.bounds.width / spacing).floor
-  num_rows = (pdf.bounds.height / spacing).floor
-  pdf.fill_color opts[:grid_color]
-  (1..pages).each do |page|
-    (0..num_rows).each do |row|
-      (0..num_columns).each do |col|
-        pdf.fill_circle [col*spacing, row*spacing], opts[:dot_weight]
-      end
-    end
-    pdf.start_new_page unless page == pages
-  end
-end
+dot_grid_generator = DotGridGenerator.new(opts)
+dot_grid_generator.generate
