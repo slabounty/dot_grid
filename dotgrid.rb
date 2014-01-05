@@ -14,7 +14,7 @@ opts = Trollop::options do
   opt :grid_color, "Grid Color (RGB)", :type => :string, :default => "B3B3B3"
   opt :spacing, "Dot Spacing (mm)", :type => :integer, :default => 5
   opt :pages, "Number of pages", :type => :integer, :default => 1
+  opt :planner, "Add a Planner Page"
 end
 
-dot_grid_generator = DotGridGenerator.new(opts)
-dot_grid_generator.generate
+dot_grid_generator = DotGridGenerator.new(opts).generate
