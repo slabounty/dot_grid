@@ -10,7 +10,9 @@ class DotGridGenerator
     :grid_color,
     :pages,
     :spacing,
-    :planner
+    :planner,
+    :planner_color_1,
+    :planner_color_2
   )
   def initialize(params)
     @file_name = params[:file_name]
@@ -21,6 +23,8 @@ class DotGridGenerator
     @pages = params[:pages]
     @spacing = params[:spacing].mm
     @planner = params[:planner]
+    @planner_color_1 = params[:planner_color_1]
+    @planner_color_2 = params[:planner_color_2]
   end
 
   def generate
@@ -41,14 +45,14 @@ class DotGridGenerator
     height = pdf.bounds.height
     header_height = 0.05 * height
 
-    header_left_color = "cccccc"
+    header_left_color = planner_color_1
     header_left_start = width*0.05
     header_left_width = width*0.30
 
     header_gap_start = header_left_start + header_left_width
     header_gap_width = width*0.03
 
-    header_right_color = "0099ff"
+    header_right_color = planner_color_2
     header_right_start = header_gap_start + header_gap_width
     header_right_width = width - header_right_start
 
@@ -76,9 +80,8 @@ class DotGridGenerator
       end
     end
 
-
     # Footer
-    footer_color = header_left_color
+    footer_color = planner_color_1
     footer_start = header_left_start
     footer_height = header_height * 2
     footer_width = width - footer_start
