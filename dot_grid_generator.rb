@@ -5,6 +5,7 @@ class DotGridGenerator
   attr_accessor(
     :file_name,
     :page_size,
+    :grid,
     :dot_weight,
     :margin,
     :grid_color,
@@ -17,6 +18,7 @@ class DotGridGenerator
   def initialize(params)
     @file_name = params[:file_name]
     @page_size = params[:page_size]
+    @grid = params[:grid]
     @dot_weight = params[:dot_weight]
     @margin = params[:margin]
     @grid_color = params[:grid_color]
@@ -28,14 +30,16 @@ class DotGridGenerator
   end
 
   def generate
-    Prawn::Document.generate(file_name, margin: margin, page_size: page_size) do |pdf|
+    Prawn::Document.generate(file_name, margin: margin, page_size: page_size, skip_page_creation: true) do |pdf|
       (1..pages).each do |page|
         if planner
-          generate_planner_page(pdf)
           pdf.start_new_page
+          generate_planner_page(pdf)
         end
-        generate_dot_grid_page(pdf)
-        pdf.start_new_page unless page == pages
+        if grid
+          pdf.start_new_page
+          generate_dot_grid_page(pdf)
+        end
       end
     end
   end
@@ -45,9 +49,15 @@ class DotGridGenerator
     height = pdf.bounds.height
     header_height = 0.05 * height
 
+    square_grid_rows = 45
+    square_grid_columns = 13
+
+    dot_grid_rows = 46
+    dot_grid_columns = 28
+
     header_left_color = planner_color_1
     header_left_start = width*0.05
-    header_left_width = width*0.30
+    header_left_width = square_grid_columns*spacing
 
     header_gap_start = header_left_start + header_left_width
     header_gap_width = width*0.03
@@ -66,17 +76,17 @@ class DotGridGenerator
 
     # Square Grid Left
     pdf.fill_color header_left_color
-    (0..45).each do |row|
-      (0..12).each do |col|
-        pdf.fill_rectangle [header_left_start + col*spacing, height - header_height - spacing - row*spacing], spacing-1 ,spacing-1
+    (1..square_grid_rows).each do |row|
+      (1..square_grid_columns).each do |col|
+        pdf.fill_rectangle [header_left_start + (col-1)*spacing, height - header_height - spacing - (row-1)*spacing], spacing-1 ,spacing-1
       end
     end
 
     # Dot Grid Right
     pdf.fill_color grid_color
-    (0..45).each do |row|
-      (0..27).each do |col|
-        pdf.fill_circle [header_right_start + col*spacing, height - header_height - spacing - row*spacing], dot_weight
+    (1..dot_grid_rows).each do |row|
+      (1..dot_grid_columns).each do |col|
+        pdf.fill_circle [header_right_start + (col-1)*spacing, height - header_height - spacing - (row-1)*spacing], dot_weight
       end
     end
 

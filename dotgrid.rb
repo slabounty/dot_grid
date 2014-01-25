@@ -8,6 +8,7 @@ require './dot_grid_generator.rb'
 
 opts = Trollop::options do
   opt :file_name, "File Name", :type => :string, :default => "dotgrid.pdf"
+  opt :grid, "Add a Grid Page", default: true
   opt :dot_weight, "Dot Weight", :type => :float, :default => 1.5
   opt :margin, "Border", :type => :float, :default => 0.5
   opt :page_size, "Page Size (LEGAL, LETTER)", :type => :string, :default => "LETTER"
