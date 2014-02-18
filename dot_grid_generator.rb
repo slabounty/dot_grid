@@ -1,59 +1,32 @@
 require 'prawn'
 require "prawn/measurement_extensions"
 
-class DotGridGenerator
+class DotGridPlanner
   attr_accessor(
-    :file_name,
-    :page_size,
-    :grid,
     :dot_weight,
-    :margin,
     :grid_color,
-    :pages,
     :spacing,
-    :planner,
     :planner_color_1,
     :planner_color_2
   )
+
   def initialize(params)
-    @file_name = params[:file_name]
-    @page_size = params[:page_size]
-    @grid = params[:grid]
     @dot_weight = params[:dot_weight]
-    @margin = params[:margin]
     @grid_color = params[:grid_color]
-    @pages = params[:pages]
     @spacing = params[:spacing].mm
-    @planner = params[:planner]
     @planner_color_1 = params[:planner_color_1]
     @planner_color_2 = params[:planner_color_2]
   end
 
-  def generate
-    Prawn::Document.generate(file_name, margin: margin, page_size: page_size, skip_page_creation: true) do |pdf|
-      (1..pages).each do |page|
-        if planner
-          pdf.start_new_page
-          generate_planner_page(pdf)
-        end
-        if grid
-          pdf.start_new_page
-          generate_dot_grid_page(pdf)
-        end
-      end
-    end
-  end
+  def generate(pdf)
+    pdf.start_new_page
 
-  def generate_planner_page(pdf)
     width = pdf.bounds.width
     height = pdf.bounds.height
     header_height = 0.05 * height
 
     square_grid_rows = 45
     square_grid_columns = 13
-
-    dot_grid_rows = 46
-    dot_grid_columns = 28
 
     header_left_color = planner_color_1
     header_left_start = width*0.05
@@ -83,6 +56,9 @@ class DotGridGenerator
     end
 
     # Dot Grid Right
+    dot_grid_rows = 46
+    dot_grid_columns = 28
+
     pdf.fill_color grid_color
     (1..dot_grid_rows).each do |row|
       (1..dot_grid_columns).each do |col|
@@ -99,6 +75,21 @@ class DotGridGenerator
     pdf.fill_rectangle [footer_start, footer_height], footer_width, footer_height
 
   end
+end
+
+class DotGridGrid
+  attr_accessor(
+    :dot_weight,
+    :grid_color,
+    :spacing,
+  )
+
+  def initialize(params)
+    @dot_weight = params[:dot_weight]
+    @grid_color = params[:grid_color]
+    @spacing = params[:spacing].mm
+  end
+
 
   def page_rows(pdf)
     (pdf.bounds.height / spacing).floor
@@ -108,13 +99,45 @@ class DotGridGenerator
     (pdf.bounds.width / spacing).floor
   end
 
-  def generate_dot_grid_page(pdf)
+  def generate(pdf)
+    pdf.start_new_page
     num_columns = page_columns(pdf)
     num_rows = page_rows(pdf)
     pdf.fill_color grid_color
     (0..num_rows).each do |row|
       (0..num_columns).each do |col|
         pdf.fill_circle [col*spacing, row*spacing], dot_weight
+      end
+    end
+  end
+end
+
+class DotGridGenerator
+  attr_accessor(
+    :file_name,
+    :page_size,
+    :grid,
+    :grid_page,
+    :margin,
+    :pages,
+    :planner,
+    :planner_page
+  )
+
+  def initialize(params)
+    @file_name = params[:file_name]
+    @page_size = params[:page_size]
+    @margin = params[:margin]
+    @pages = params[:pages]
+    @grid_page = DotGridGrid.new(params) if params[:grid]
+    @planner_page = DotGridPlanner.new(params) if params[:planner]
+  end
+
+  def generate
+    Prawn::Document.generate(file_name, margin: margin, page_size: page_size, skip_page_creation: true) do |pdf|
+      (1..pages).each do |page|
+        planner_page.generate(pdf) if planner_page
+        grid_page.generate(pdf) if grid_page
       end
     end
   end
