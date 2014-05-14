@@ -48,32 +48,38 @@ class DotGridPlanner
     pdf.fill_rectangle [header_right_start, height], header_right_width, header_height
 
     # Square Grid Left
-    pdf.fill_color header_left_color
+    draw_square_grid_left(pdf, square_grid_rows, square_grid_columns, header_left_color, header_left_start, height - header_height - spacing, spacing)
+
+    # Dot Grid Right
+    draw_dot_grid_right(pdf, 46, 28, grid_color, header_right_start, height-header_height, spacing, dot_weight)
+
+    # Footer
+    draw_footer(pdf, planner_color_1, header_left_start, header_height*2, width-header_left_start)
+  end
+
+  def draw_square_grid_left(pdf, square_grid_rows, square_grid_columns, grid_color, left_start, height_start, spacing)
+    pdf.fill_color grid_color
     (1..square_grid_rows).each do |row|
       (1..square_grid_columns).each do |col|
-        pdf.fill_rectangle [header_left_start + (col-1)*spacing, height - header_height - spacing - (row-1)*spacing], spacing-1 ,spacing-1
+        pdf.fill_rectangle [left_start + (col-1)*spacing, height_start - (row-1)*spacing], spacing-1 ,spacing-1
       end
     end
 
-    # Dot Grid Right
-    dot_grid_rows = 46
-    dot_grid_columns = 28
+  end
 
+  def draw_dot_grid_right(pdf, dot_grid_rows, dot_grid_columns, grid_color, left_start, height_start, spacing, dot_weight)
     pdf.fill_color grid_color
     (1..dot_grid_rows).each do |row|
       (1..dot_grid_columns).each do |col|
-        pdf.fill_circle [header_right_start + (col-1)*spacing, height - header_height - spacing - (row-1)*spacing], dot_weight
+        pdf.fill_circle [left_start + (col-1)*spacing, height_start - spacing - (row-1)*spacing], dot_weight
       end
     end
+  end
 
-    # Footer
-    footer_color = planner_color_1
-    footer_start = header_left_start
-    footer_height = header_height * 2
-    footer_width = width - footer_start
+
+  def draw_footer(pdf, footer_color, footer_start, footer_height, footer_width)
     pdf.fill_color footer_color
     pdf.fill_rectangle [footer_start, footer_height], footer_width, footer_height
-
   end
 end
 
