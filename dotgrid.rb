@@ -1,10 +1,13 @@
 #!ruby
 
-require 'rubygems' 
-require 'bundler/setup'  
+require 'rubygems'
+require 'bundler/setup'
+
 # require your gems as usual 
+require 'require_all'
 require 'trollop'
-require './dot_grid_generator.rb'
+#require_relative 'lib/dot_grid_generator'
+require_all 'lib'
 
 opts = Trollop::options do
   opt :file_name, "File Name", :type => :string, :default => "dotgrid.pdf"

@@ -13,6 +13,7 @@ GEM
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
       ttfunk (~> 1.0.2)
+    require_all (1.3.2)
     ruby-rc4 (0.1.5)
     trollop (2.0)
     ttfunk (1.0.3)
@@ -22,4 +23,5 @@ PLATFORMS
 
 DEPENDENCIES
   prawn
+  require_all
   trollop
