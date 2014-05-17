@@ -6,29 +6,22 @@ class DotGridGrid < DotGridPage
   )
 
   def initialize(params)
-    @dot_weight = params[:dot_weight]
-    @grid_color = params[:grid_color]
-    @spacing = params[:spacing].mm
+    super
   end
 
 
   def page_rows(pdf)
-    (pdf.bounds.height / spacing).floor
+    (page_height(pdf) / spacing).floor
   end
 
   def page_columns(pdf)
-    (pdf.bounds.width / spacing).floor
+    (page_width(pdf) / spacing).floor
   end
 
   def generate(pdf)
     pdf.start_new_page
     num_columns = page_columns(pdf)
     num_rows = page_rows(pdf)
-    pdf.fill_color grid_color
-    (0..num_rows).each do |row|
-      (0..num_columns).each do |col|
-        pdf.fill_circle [col*spacing, row*spacing], dot_weight
-      end
-    end
+    draw_dot_grid(pdf, num_rows, num_columns, 0, pdf.bounds.height)
   end
 end
