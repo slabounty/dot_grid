@@ -10,11 +10,11 @@ class DotGridPlanner < DotGridPage
     @planner_color_2 = params[:planner_color_2]
   end
 
-  def generate(pdf)
+  def generate
     pdf.start_new_page
 
-    width = page_width(pdf)
-    height = page_height(pdf)
+    width = page_width
+    height = page_height
     header_height = 0.05 * height
 
     square_grid_rows = 45
@@ -40,16 +40,16 @@ class DotGridPlanner < DotGridPage
     pdf.fill_rectangle [header_right_start, height], header_right_width, header_height
 
     # Square Grid Left
-    draw_square_grid_left(pdf, square_grid_rows, square_grid_columns, header_left_color, header_left_start, height - header_height - spacing, spacing)
+    draw_square_grid_left(square_grid_rows, square_grid_columns, header_left_color, header_left_start, height - header_height - spacing, spacing)
 
     # Dot Grid Right
-    draw_dot_grid(pdf, 46, 28, header_right_start, height-header_height)
+    draw_dot_grid(46, 28, header_right_start, height-header_height)
 
     # Footer
-    draw_footer(pdf, planner_color_1, header_left_start, header_height*2, width-header_left_start)
+    draw_footer(planner_color_1, header_left_start, header_height*2, width-header_left_start)
   end
 
-  def draw_square_grid_left(pdf, square_grid_rows, square_grid_columns, grid_color, left_start, height_start, spacing)
+  def draw_square_grid_left(square_grid_rows, square_grid_columns, grid_color, left_start, height_start, spacing)
     pdf.fill_color grid_color
     (1..square_grid_rows).each do |row|
       (1..square_grid_columns).each do |col|
@@ -59,7 +59,7 @@ class DotGridPlanner < DotGridPage
 
   end
 
-  def draw_footer(pdf, footer_color, footer_start, footer_height, footer_width)
+  def draw_footer(footer_color, footer_start, footer_height, footer_width)
     pdf.fill_color footer_color
     pdf.fill_rectangle [footer_start, footer_height], footer_width, footer_height
   end
