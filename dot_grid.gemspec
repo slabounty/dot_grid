@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Dot Grid planner PDF generator.}
   gem.summary       = %q{Dot Grid planner PDF generator.}
   gem.homepage      = "http://github.com/slabounty/dot_grid"
+  gem.licenses      = %w[MIT]
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

@@ -6,7 +6,6 @@ require 'bundler/setup'
 # require your gems as usual 
 require 'require_all'
 require 'trollop'
-#require_relative 'lib/dot_grid_generator'
 require_all 'lib'
 
 opts = Trollop::options do
