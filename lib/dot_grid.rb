@@ -1,4 +1,7 @@
-require 'dot_grid/dot_grid_generator'
-require 'dot_grid/dot_grid_page'
-require 'dot_grid/dot_grid_grid'
-require 'dot_grid/dot_grid_planner'
+require 'dot_grid/generator'
+require 'dot_grid/page'
+require 'dot_grid/grid'
+require 'dot_grid/planner'
+
+module DotGrid
+end

@@ -1,4 +1,4 @@
-#!ruby
+#!#!/usr/bin/env ruby
 
 require 'rubygems'
 require 'bundler/setup'
@@ -23,4 +23,4 @@ opts = Trollop::options do
   opt :planner_color_2, "Planner Right color", type: :string, default: "0099ff"
 end
 
-dot_grid_generator = DotGridGenerator.new(opts).generate
+dot_grid_generator = DotGrid::Generator.new(opts).generate
