@@ -9,9 +9,9 @@ module DotGrid
 
     def initialize(params)
       @pdf = params[:pdf]
-      @dot_weight = params[:dot_weight]
-      @grid_color = params[:grid_color]
-      @spacing = params[:spacing].mm
+      @dot_weight = params[:dot_weight] || 1.5
+      @grid_color = params[:grid_color] || "B3B3B3"
+      @spacing = params[:spacing] ? params[:spacing].mm : 5.mm
     end
 
     def page_width

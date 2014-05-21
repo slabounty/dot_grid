@@ -16,10 +16,10 @@ module DotGrid
     )
 
     def initialize(params)
-      @file_name = params[:file_name]
-      @page_size = params[:page_size]
-      @margin = params[:margin]
-      @pages = params[:pages]
+      @file_name = params[:file_name] || "dotgrid.pdf"
+      @page_size = params[:page_size] || "LETTER"
+      @margin = params[:margin] || 0.5
+      @pages = params[:pages] || 1
       @pdf = Prawn::Document.new(margin: margin, page_size: page_size, skip_page_creation: true)
       params[:pdf] = pdf
       @grid_page = DotGrid::Grid.new(params) if params[:grid]

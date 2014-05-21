@@ -7,8 +7,8 @@ module DotGrid
 
     def initialize(params)
       super
-      @planner_color_1 = params[:planner_color_1]
-      @planner_color_2 = params[:planner_color_2]
+      @planner_color_1 = params[:planner_color_1] || "CCCCCC"
+      @planner_color_2 = params[:planner_color_2] || "0099ff"
     end
 
     def generate
