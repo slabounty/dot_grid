@@ -34,4 +34,21 @@ describe "DotGrid::Page" do
       expect(subject.page_height).to eq(22)
     end
   end
+
+  describe "#draw_dot_grid" do
+    let(:pdf) { double('pdf', bounds: double(:height => 22)) }
+    let(:subject) { DotGrid::Page.new({:pdf => pdf, :grid_color => "CCDDEE"}) }
+
+    it "sets the pdf fill color" do
+      allow(pdf).to receive(:fill_circle)
+      expect(pdf).to receive(:fill_color).with("CCDDEE")
+      subject.draw_dot_grid(1, 1, 100, 200)
+    end
+
+    it "fills the correct number of circles for the grid" do
+      allow(pdf).to receive(:fill_color)
+      expect(pdf).to receive(:fill_circle).exactly(4).times
+      subject.draw_dot_grid(2, 2, 100, 200)
+    end
+  end
 end
