@@ -28,21 +28,21 @@ The options and their defaults are ...
 <table>
 <thead>
 <tr>
-<th>Option</th> <th>Default</th>
+<th>Long Option</th><th>Short Option</th><th>Default</th>
 </tr>
 </thead>
 <tbody>
-<tr><td>file-name</td><td>dotgrid.pdf</td></tr>
-<tr><td>grid</td><td>true</td></tr>
-<tr><td>dot-weight</td><td>1.5</td></tr>
-<tr><td>margin</td><td>0.5</td></tr>
-<tr><td>page-size</td><td>LETTER</td></tr>
-<tr><td>grid-color</td><td>B3B3B3</td></tr>
-<tr><td>spacing</td><td>5</td></tr>
-<tr><td>pages</td><td>1</td></tr>
-<tr><td>planner</td><td>false</td></tr>
-<tr><td>planner-color-1</td><td>CCCCCC</td></tr>
-<tr><td>planner-color-2</td><td>0099FF</td></tr>
+<tr><td>file-name</td><td>-f</td><td>dotgrid.pdf</td></tr>
+<tr><td>grid</td><td>-g</td><td>true</td></tr>
+<tr><td>dot-weight</td><td>-d</td><td>1.5</td></tr>
+<tr><td>margin</td><td>-m</td><td>0.5</td></tr>
+<tr><td>page-size</td><td>-p</td><td>LETTER</td></tr>
+<tr><td>grid-color</td><td>-r</td><td>B3B3B3</td></tr>
+<tr><td>spacing</td><td>-s</td><td>5</td></tr>
+<tr><td>pages</td><td>-a</td><td>1</td></tr>
+<tr><td>planner</td><td>-l</td><td>false</td></tr>
+<tr><td>planner-color-1</td><td>-n</td><td>CCCCCC</td></tr>
+<tr><td>planner-color-2</td><td>-e</td><td>0099FF</td></tr>
 </tbody>
 </table>
 
