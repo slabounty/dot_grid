@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/slabounty/dot_grid.svg?branch=master)](https://travis-ci.org/slabounty/dot_grid)
 [![Coverage Status](https://coveralls.io/repos/slabounty/dot_grid/badge.png?branch=master)](https://coveralls.io/r/slabounty/dot_grid?branch=master)
+[![Code Climate](https://codeclimate.com/github/slabounty/dot_grid.png)](https://codeclimate.com/github/slabounty/dot_grid)
 
 # DotGrid: dot grid planning pages
 
