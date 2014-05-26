@@ -29,6 +29,16 @@ The options and their defaults are ...
 </thead>
 <tbody>
 <tr><td>file_name</td><td>dotgrid.pdf</td></tr>
+<tr><td>grid</td><td>true</td></tr>
+<tr><td>dot_weight</td><td>1.5</td></tr>
+<tr><td>margin</td><td>0.5</td></tr>
+<tr><td>page_size</td><td>LETTER</td></tr>
+<tr><td>grid_color</td><td>B3B3B3</td></tr>
+<tr><td>spacing</td><td>5</td></tr>
+<tr><td>pages</td><td>1</td></tr>
+<tr><td>planner</td><td>false</td></tr>
+<tr><td>planner_color_1</td><td>CCCCCC</td></tr>
+<tr><td>planner_color_2</td><td>0099FF</td></tr>
 </tbody>
 </table>
 
