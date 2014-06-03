@@ -13,6 +13,34 @@ describe "DotGrid::Planner" do
     end
   end
 
+  describe "#header_height" do
+    let(:pdf) { double('pdf') }
+    let(:subject) { DotGrid::Planner.new({:pdf => pdf }) }
+
+    it "returns the HEADER_HEIGHT_PERCENT of the header height" do
+      allow(subject).to receive(:page_height).and_return(20)
+      expect(subject.header_height).to eq(DotGrid::Planner::HEADER_HEIGHT_PERCENT / 100.0 * subject.page_height)
+    end
+  end
+
+  describe "#square_grid_columns" do
+    let(:pdf) { double('pdf') }
+    let(:subject) { DotGrid::Planner.new({:pdf => pdf, spacing: 5 }) }
+
+    it "returns the HEADER_HEIGHT_PERCENT of the header height" do
+      allow(subject).to receive(:page_width).and_return(100)
+      expect(subject.square_grid_columns).to eq((DotGrid::Planner::SQUARE_GRID_WIDTH_PERCENT / 100.0 * subject.page_width / subject.spacing).floor)
+    end
+  end
+
+  describe "#header_left_color" do
+    let(:pdf) { double('pdf') }
+    let(:subject) { DotGrid::Planner.new({:pdf => pdf, planner_color_1: "DDEEFF" }) }
+    it "returns the planner color 1" do
+      expect(subject.header_left_color).to eq("DDEEFF")
+    end
+  end
+
   describe "#generate" do
     let(:pdf) { double('pdf') }
     let(:subject) { DotGrid::Planner.new({:pdf => pdf }) }

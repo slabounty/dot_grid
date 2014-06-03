@@ -5,8 +5,9 @@ module DotGrid
       :planner_color_2
     )
 
-    HEADER_HEIGHT_PERCENT = 5.00
-    HEADER_LEFT_START_PERCENT = 5.00
+    HEADER_HEIGHT_PERCENT = 5.0
+    HEADER_LEFT_START_PERCENT = 5.0
+    SQUARE_GRID_WIDTH_PERCENT = 30.0
 
     def initialize(params)
       super
@@ -19,7 +20,7 @@ module DotGrid
     end
 
     def square_grid_columns
-      (page_width * 0.30 / spacing).floor
+      (((SQUARE_GRID_WIDTH_PERCENT / 100.0) * page_width) / spacing).floor
     end
 
     def header_left_color
