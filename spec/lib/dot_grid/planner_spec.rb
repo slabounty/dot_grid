@@ -79,6 +79,28 @@ describe "DotGrid::Planner" do
     end
   end
 
+  describe "#dot_grid_rows" do
+    let(:pdf) { double('pdf') }
+    let(:subject) { DotGrid::Planner.new({:pdf => pdf }) }
+    let(:square_grid_rows) { 10 }
+
+    it "returns the foot height" do
+      allow(subject).to receive(:square_grid_rows).and_return(square_grid_rows)
+      expect(subject.dot_grid_rows).to eq(square_grid_rows+1)
+    end
+  end
+
+  describe "#footer_height" do
+    let(:pdf) { double('pdf') }
+    let(:subject) { DotGrid::Planner.new({:pdf => pdf }) }
+    let(:header_height) { 100 }
+
+    it "returns the foot height" do
+      allow(subject).to receive(:header_height).and_return(header_height)
+      expect(subject.footer_height).to eq(header_height*DotGrid::Planner::FOOT_HEIGHT_RATIO)
+    end
+  end
+
   describe "#generate" do
     let(:pdf) { double('pdf') }
     let(:subject) { DotGrid::Planner.new({:pdf => pdf }) }

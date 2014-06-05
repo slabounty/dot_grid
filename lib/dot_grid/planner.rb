@@ -9,6 +9,9 @@ module DotGrid
     HEADER_LEFT_START = 0.05 # 5.0%
     SQUARE_GRID_WIDTH = 0.30 # 30.0%
     HEADER_GAP_WIDTH = 0.03 # 3.0%
+    DOT_GRID_COLUMN_WIDTH = 0.62 # 62%
+    SQUARE_GRID_ROWS_WIDTH = 0.80 # 80%
+    FOOT_HEIGHT_RATIO = 2 # Ratio of footer to header
 
     def initialize(params)
       super
@@ -45,7 +48,7 @@ module DotGrid
     end
 
     def dot_grid_columns
-      (page_width * 0.62 / spacing).floor  + 2
+      (page_width * DOT_GRID_COLUMN_WIDTH / spacing).floor  + 2
     end
 
     def dot_grid_rows
@@ -65,11 +68,11 @@ module DotGrid
     end
 
     def square_grid_rows
-      (page_height * 0.80 / spacing).floor
+      (page_height * SQUARE_GRID_ROWS_WIDTH / spacing).floor
     end
 
     def footer_height
-      header_height * 2
+      header_height * FOOT_HEIGHT_RATIO
     end
 
     def generate
