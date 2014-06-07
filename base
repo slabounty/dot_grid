@@ -1,4 +1,4 @@
 # Base planner
-ruby dotgrid.rb -f dotgrid_w5_c2dfff_no_grid.pdf --no-grid --grid-color CFBAEC --dot-weight 0.5 -m 0.0 --planner --planner-color-1 dddddd --planner-color-2 C2DFFF
+bin/dotgrid -f dotgrid_w5_c2dfff_no_grid.pdf --no-grid --grid-color CFBAEC --dot-weight 0.5 -m 0.0 --planner --planner-color-1 dddddd --planner-color-2 C2DFFF
 
-ruby dotgrid.rb -f dotgrid_w75_c2dfff_no_grid.pdf --no-grid --grid-color CFBAEC --dot-weight 0.75 -m 0.0 --planner --planner-color-1 dddddd --planner-color-2 C2DFFF
+bin/dotgrid -f dotgrid_w75_c2dfff_no_grid.pdf --no-grid --grid-color CFBAEC --dot-weight 0.75 -m 0.0 --planner --planner-color-1 dddddd --planner-color-2 C2DFFF
