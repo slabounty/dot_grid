@@ -27,14 +27,14 @@ describe "DotGrid::Generator" do
 
     context "when there is a grid parameter" do
       it "creates a new grid page" do
-        expect(DotGrid::Grid).to receive(:new)
+        expect(DotGrid::Page::Grid).to receive(:new)
         DotGrid::Generator.new({:grid => true})
       end
     end
 
     context "when there is a planner parameter" do
       it "creates a new grid page" do
-        expect(DotGrid::Planner).to receive(:new)
+        expect(DotGrid::Page::Planner).to receive(:new)
         DotGrid::Generator.new({:planner => true})
       end
     end
