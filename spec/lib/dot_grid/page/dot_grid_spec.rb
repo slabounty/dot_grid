@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "DotGrid::Page::Grid" do
+describe "DotGrid::Page::DotGrid" do
   describe "#initialize" do
-    let(:subject) { DotGrid::Page::Grid.new({}) }
+    let(:subject) { DotGrid::Page::DotGrid.new({}) }
 
     it "calculates the number of rows" do
       allow(subject).to receive(:page_height).and_return(22)

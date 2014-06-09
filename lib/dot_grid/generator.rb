@@ -22,7 +22,7 @@ module DotGrid
       @pages = params[:pages] || 1
       @pdf = Prawn::Document.new(margin: margin, page_size: page_size, skip_page_creation: true)
       params[:pdf] = pdf
-      @grid_page = DotGrid::Page::Grid.new(params) if params[:grid]
+      @grid_page = DotGrid::Page::DotGrid.new(params) if params[:grid]
       @planner_page = DotGrid::Page::Planner.new(params) if params[:planner]
     end
 

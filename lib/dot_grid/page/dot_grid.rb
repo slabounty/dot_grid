@@ -1,6 +1,6 @@
 module DotGrid
   module Page
-    class Grid < Page
+    class DotGrid < Page
       attr_accessor(
         :dot_weight,
         :grid_color,
@@ -10,7 +10,6 @@ module DotGrid
       def initialize(params)
         super
       end
-
 
       def page_rows
         (page_height / spacing).floor
