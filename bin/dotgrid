@@ -19,6 +19,7 @@ opts = Trollop::options do
   opt :pages, "Number of pages", :type => :integer, :default => 1
   opt :planner, "Add a Planner Page"
   opt :grid, "Add a Regular Grid page"
+  opt :horizontal_rule, "Add a Horizontal Rule page"
   opt :planner_color_1, "Planner Left and Footer color", type: :string, default: "CCCCCC"
   opt :planner_color_2, "Planner Right color", type: :string, default: "0099ff"
 end

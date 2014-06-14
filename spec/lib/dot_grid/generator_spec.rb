@@ -65,6 +65,14 @@ describe "DotGrid::Generator" do
       end
     end
 
+    context "when there is a horizontal rule page" do
+      let(:subject) { DotGrid::Generator.new(:horizontal_rule => true)}
+      it "generates a new horizontal rule page" do
+        expect(subject.horizontal_rule_page).to receive(:generate)
+        subject.generate
+      end
+    end
+
     context "when there are multiple pages" do
       let(:subject) { DotGrid::Generator.new(:dot_grid => true, :planner => true, :pages => 2)}
 

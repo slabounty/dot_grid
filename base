@@ -5,3 +5,6 @@ bin/dotgrid -f dotgrid_w75_c2dfff_no_grid.pdf --no-grid --grid-color CFBAEC --do
 
 # Regular grid
 bin/dotgrid -f grid_c2dfff.pdf --grid --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
+
+# Horizontal rule
+bin/dotgrid -f horizontal_rule_c2dfff.pdf --horizontal-rule --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0

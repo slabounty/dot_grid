@@ -17,4 +17,3 @@ describe "DotGrid::Page::Grid" do
     end
   end
 end
-
