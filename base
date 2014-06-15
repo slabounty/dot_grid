@@ -8,3 +8,6 @@ bin/dotgrid -f grid_c2dfff.pdf --grid --no-dot-grid --spacing 5 --grid-color CFB
 
 # Horizontal rule
 bin/dotgrid -f horizontal_rule_c2dfff.pdf --horizontal-rule --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
+
+# Horizontal rule
+bin/dotgrid -f checkerboard_c2dfff.pdf --checkerboard --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0

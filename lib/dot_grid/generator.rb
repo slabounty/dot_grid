@@ -16,6 +16,8 @@ module DotGrid
       :planner_page,
       :horizontal_rule,
       :horizontal_rule_page,
+      :checkerboard,
+      :checkerboard_page,
     )
 
     def initialize(params)
@@ -30,6 +32,7 @@ module DotGrid
       @planner_page = DotGrid::Page::Planner.new(params) if params[:planner]
       @grid_page = DotGrid::Page::Grid.new(params) if params[:grid]
       @horizontal_rule_page = DotGrid::Page::HorizontalRule.new(params) if params[:horizontal_rule]
+      @checkerboard_page = DotGrid::Page::Checkerboard.new(params) if params[:checkerboard]
     end
 
     def generate
@@ -38,6 +41,7 @@ module DotGrid
         grid_page.generate if grid_page
         dot_grid_page.generate if dot_grid_page
         horizontal_rule_page.generate if horizontal_rule_page
+        checkerboard_page.generate if checkerboard_page
       end
       pdf.render_file file_name
     end
