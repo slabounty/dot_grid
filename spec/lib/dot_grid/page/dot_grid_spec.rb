@@ -2,18 +2,27 @@ require 'spec_helper'
 
 describe "DotGrid::Page::DotGrid" do
   describe "#initialize" do
-    let(:subject) { DotGrid::Page::DotGrid.new({}) }
+    let(:pdf) { double('pdf', bounds: double('bounds')) }
 
-    it "calculates the number of rows" do
-      allow(subject).to receive(:page_height).and_return(22)
-      allow(subject).to receive(:spacing).and_return(5)
-      expect(subject.page_rows).to eq(4)
+    it "creates a dot grid pattern" do
+      expect(::DotGrid::Pattern::DotGrid).to receive(:new)
+      DotGrid::Page::DotGrid.new({pdf: pdf})
+    end
+  end
+
+  describe "#generate" do
+    let(:pdf) { double('pdf', bounds: double('bounds')) }
+    let(:subject) { DotGrid::Page::DotGrid.new({pdf: pdf})}
+    let(:pattern) { double('pattern') }
+
+    before do
+      allow(pdf).to receive(:start_new_page)
+      allow(subject).to receive(:pattern).and_return(pattern)
     end
 
-    it "calculates the number of columns" do
-      allow(subject).to receive(:page_width).and_return(44)
-      allow(subject).to receive(:spacing).and_return(6)
-      expect(subject.page_columns).to eq(7)
+    it "draws the pattern" do
+      expect(pattern).to receive(:draw)
+      subject.generate
     end
   end
 end
