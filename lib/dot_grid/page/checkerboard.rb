@@ -2,8 +2,6 @@ module DotGrid
   module Page
     class Checkerboard < Page
       attr_accessor(
-        :grid_color,
-        :spacing,
         :pattern,
       )
 
