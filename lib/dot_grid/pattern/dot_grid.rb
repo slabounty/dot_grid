@@ -1,28 +1,12 @@
 module DotGrid
   module Pattern
-    class DotGrid
+    class DotGrid < Pattern
       attr_accessor(
-        :pdf,
         :dot_weight,
-        :grid_color,
-        :spacing,
-        :bounds
       )
 
-      def initialize(params = {})
-        @pdf = params[:pdf]
-        @bounds = params[:bounds]
+      def post_initialize(params)
         @dot_weight = params[:dot_weight] || 1.5
-        @grid_color = params[:grid_color] || "B3B3B3"
-        @spacing = params[:spacing] ? params[:spacing].mm : 5.mm
-      end
-
-      def rows
-        (bounds.height / spacing).floor
-      end
-
-      def columns
-        (bounds.width / spacing).floor
       end
 
       def draw

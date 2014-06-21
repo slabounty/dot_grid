@@ -1,23 +1,11 @@
 require 'spec_helper'
 
 describe "DotGrid::Pattern::Grid" do
-  let(:pdf) { double('pdf') }
-  let(:params) { { pdf: pdf, bounds: double('bounds', { height: 20.mm, width: 10.mm } ), spacing: 5 } }
-  let(:subject) { DotGrid::Pattern::Grid.new(params) }
-
-  describe "#rows" do
-    it "calculates the rows based on the bounds" do
-      expect(subject.rows).to eq(4)
-    end
-  end
-
-  describe "#columns" do
-    it "calculates the rows based on the bounds" do
-      expect(subject.columns).to eq(2)
-    end
-  end
-
   describe "#draw" do
+    let(:pdf) { double('pdf') }
+    let(:params) { { pdf: pdf, bounds: double('bounds', { height: 20.mm, width: 10.mm } ), spacing: 5 } }
+    let(:subject) { DotGrid::Pattern::Grid.new(params) }
+
     before do
       allow(pdf).to receive(:stroke_color)
       allow(pdf).to receive(:stroke_horizontal_line)
@@ -42,5 +30,3 @@ describe "DotGrid::Pattern::Grid" do
     end
   end
 end
-
-

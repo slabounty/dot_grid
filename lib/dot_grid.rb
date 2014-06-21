@@ -7,6 +7,7 @@ require 'dot_grid/page/grid'
 require 'dot_grid/page/horizontal_rule'
 require 'dot_grid/page/checkerboard'
 
+require 'dot_grid/pattern/pattern'
 require 'dot_grid/pattern/grid'
 require 'dot_grid/pattern/dot_grid'
 require 'dot_grid/pattern/checkerboard'
