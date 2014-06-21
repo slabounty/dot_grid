@@ -27,14 +27,14 @@ describe "DotGrid::Generator" do
 
     context "when there is a grid parameter" do
       it "creates a new grid page" do
-        expect(DotGrid::Grid).to receive(:new)
-        DotGrid::Generator.new({:grid => true})
+        expect(DotGrid::Page::DotGrid).to receive(:new)
+        DotGrid::Generator.new({:dot_grid => true})
       end
     end
 
     context "when there is a planner parameter" do
       it "creates a new grid page" do
-        expect(DotGrid::Planner).to receive(:new)
+        expect(DotGrid::Page::Planner).to receive(:new)
         DotGrid::Generator.new({:planner => true})
       end
     end
@@ -49,6 +49,14 @@ describe "DotGrid::Generator" do
       end
     end
 
+    context "when there is a dot grid page" do
+      let(:subject) { DotGrid::Generator.new(:dot_grid => true)}
+      it "generates a new grid page" do
+        expect(subject.dot_grid_page).to receive(:generate)
+        subject.generate
+      end
+    end
+
     context "when there is a grid page" do
       let(:subject) { DotGrid::Generator.new(:grid => true)}
       it "generates a new grid page" do
@@ -57,11 +65,19 @@ describe "DotGrid::Generator" do
       end
     end
 
+    context "when there is a horizontal rule page" do
+      let(:subject) { DotGrid::Generator.new(:horizontal_rule => true)}
+      it "generates a new horizontal rule page" do
+        expect(subject.horizontal_rule_page).to receive(:generate)
+        subject.generate
+      end
+    end
+
     context "when there are multiple pages" do
-      let(:subject) { DotGrid::Generator.new(:grid => true, :planner => true, :pages => 2)}
+      let(:subject) { DotGrid::Generator.new(:dot_grid => true, :planner => true, :pages => 2)}
 
       it "generates grid for each page" do
-        expect(subject.grid_page).to receive(:generate).twice
+        expect(subject.dot_grid_page).to receive(:generate).twice
         subject.generate
       end
 
