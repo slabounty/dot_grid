@@ -13,6 +13,11 @@ module DotGrid
         @dot_weight = params[:dot_weight] || 1.5
         @grid_color = params[:grid_color] || "B3B3B3"
         @spacing = params[:spacing] ? params[:spacing].mm : 5.mm
+        post_initialize(params)
+      end
+
+      def post_initialize(params)
+        nil
       end
 
       def generate

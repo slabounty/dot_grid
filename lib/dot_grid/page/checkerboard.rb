@@ -5,8 +5,7 @@ module DotGrid
         :pattern,
       )
 
-      def initialize(params)
-        super
+      def post_initialize(params)
         @pattern = ::DotGrid::Pattern::Checkerboard.new(params.merge!(:bounds => pdf.bounds))
       end
 

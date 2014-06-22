@@ -2,13 +2,10 @@ module DotGrid
   module Page
     class Grid < Page
       attr_accessor(
-        :grid_color,
-        :spacing,
         :pattern
       )
 
-      def initialize(params)
-        super
+      def post_initialize(params)
         @pattern = ::DotGrid::Pattern::Grid.new(params.merge!(:bounds => pdf.bounds))
       end
 

@@ -5,8 +5,7 @@ module DotGrid
         :pattern
       )
 
-      def initialize(params)
-        super
+      def post_initialize(params)
         @pattern = ::DotGrid::Pattern::HorizontalRule.new(params.merge!(:bounds => pdf.bounds))
       end
 
@@ -17,4 +16,3 @@ module DotGrid
     end
   end
 end
-

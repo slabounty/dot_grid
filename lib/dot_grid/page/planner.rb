@@ -14,8 +14,7 @@ module DotGrid
       SQUARE_GRID_ROWS_WIDTH = 0.80      # 80%
       FOOT_HEIGHT_RATIO = 2              # Ratio of footer to header
 
-      def initialize(params)
-        super
+      def post_initialize(params)
         @planner_color_1 = params[:planner_color_1] || "CCCCCC"
         @planner_color_2 = params[:planner_color_2] || "0099ff"
       end
