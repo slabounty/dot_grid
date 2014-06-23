@@ -1,17 +1,9 @@
 module DotGrid
   module Page
     class Grid < Page
-      attr_accessor(
-        :pattern
-      )
 
       def post_initialize(params)
-        @pattern = ::DotGrid::Pattern::Grid.new(params.merge!(:bounds => pdf.bounds))
-      end
-
-      def generate
-        super
-        pattern.draw
+        add_pattern(::DotGrid::Pattern::Grid.new(params.merge!(:bounds => pdf.bounds)))
       end
     end
   end

@@ -3,7 +3,10 @@ module DotGrid
     class Planner < Page
       attr_accessor(
         :planner_color_1,
-        :planner_color_2
+        :planner_color_2,
+        :dot_weight,
+        :grid_color,
+        :spacing,
       )
 
       HEADER_HEIGHT = 0.05               # 5.0 %
@@ -17,6 +20,9 @@ module DotGrid
       def post_initialize(params)
         @planner_color_1 = params[:planner_color_1] || "CCCCCC"
         @planner_color_2 = params[:planner_color_2] || "0099ff"
+        @dot_weight = params[:dot_weight] || 1.5
+        @grid_color = params[:grid_color] || "B3B3B3"
+        @spacing = params[:spacing] ? params[:spacing].mm : 5.mm
       end
 
       def header_height
@@ -111,6 +117,23 @@ module DotGrid
       def draw_footer(footer_color, footer_start, footer_height, footer_width)
         pdf.fill_color footer_color
         pdf.fill_rectangle [footer_start, footer_height], footer_width, footer_height
+      end
+
+      def page_width
+        pdf.bounds.width
+      end
+
+      def page_height
+        pdf.bounds.height
+      end
+
+      def draw_dot_grid(rows, columns, left_start, height_start)
+        pdf.fill_color grid_color
+        (1..rows).each do |row|
+          (1..columns).each do |col|
+            pdf.fill_circle [left_start + (col-1)*spacing, height_start - spacing - (row-1)*spacing], dot_weight
+          end
+        end
       end
     end
   end
