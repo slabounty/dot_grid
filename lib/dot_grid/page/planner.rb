@@ -23,14 +23,28 @@ module DotGrid
         @dot_weight = params[:dot_weight] || 1.5
         @grid_color = params[:grid_color] || "B3B3B3"
         @spacing = params[:spacing] ? params[:spacing].mm : 5.mm
+        add_pattern(::DotGrid::Pattern::SquareGrid.new(params.merge!(:bounds => square_grid_bounds)))
+        add_pattern(::DotGrid::Pattern::DotGrid.new(params.merge!(:bounds => dot_grid_bounds)))
+      end
+
+      def square_grid_bounds
+        ::DotGrid::BoundingBox.new(upper_left: [header_left_start, grid_top], width: header_left_width, height: grid_height)
+      end
+
+      def dot_grid_bounds
+        ::DotGrid::BoundingBox.new(upper_left: [header_right_start, grid_top], width: header_right_width, height: grid_height)
       end
 
       def header_height
         HEADER_HEIGHT * page_height
       end
 
-      def square_grid_columns
-        ((SQUARE_GRID_WIDTH * page_width) / spacing).floor
+      def grid_top
+        page_height - header_height - spacing
+      end
+
+      def grid_height
+        (grid_top - footer_height - spacing)
       end
 
       def header_left_color
@@ -42,7 +56,7 @@ module DotGrid
       end
 
       def header_left_width
-        square_grid_columns*spacing
+        ((SQUARE_GRID_WIDTH * page_width) / spacing).floor * spacing
       end
 
       def header_gap_start
@@ -51,14 +65,6 @@ module DotGrid
 
       def header_gap_width
         page_width * HEADER_GAP_WIDTH
-      end
-
-      def dot_grid_columns
-        (page_width * DOT_GRID_COLUMN_WIDTH / spacing).floor  + 2
-      end
-
-      def dot_grid_rows
-        square_grid_rows + 1
       end
 
       def header_right_color
@@ -71,10 +77,6 @@ module DotGrid
 
       def header_right_width
         page_width - header_right_start
-      end
-
-      def square_grid_rows
-        (page_height * SQUARE_GRID_ROWS_WIDTH / spacing).floor
       end
 
       def footer_height
@@ -90,12 +92,6 @@ module DotGrid
         # Header right
         draw_header(header_right_start, header_right_width, header_height, header_right_color)
 
-        # Square Grid Left
-        draw_square_grid_left(square_grid_rows, square_grid_columns, header_left_color, header_left_start, page_height - header_height - spacing, spacing)
-
-        # Dot Grid Right
-        draw_dot_grid(dot_grid_rows, dot_grid_columns, header_right_start, page_height-header_height)
-
         # Footer
         draw_footer(planner_color_1, header_left_start, footer_height, page_width-header_left_start)
       end
@@ -103,15 +99,6 @@ module DotGrid
       def draw_header(header_start, header_width, header_height, header_color)
         pdf.fill_color header_color
         pdf.fill_rectangle [header_start, page_height], header_width, header_height
-      end
-
-      def draw_square_grid_left(square_grid_rows, square_grid_columns, grid_color, left_start, height_start, spacing)
-        pdf.fill_color grid_color
-        (1..square_grid_rows).each do |row|
-          (1..square_grid_columns).each do |col|
-            pdf.fill_rectangle [left_start + (col-1)*spacing, height_start - (row-1)*spacing], spacing-1 ,spacing-1
-          end
-        end
       end
 
       def draw_footer(footer_color, footer_start, footer_height, footer_width)
@@ -125,15 +112,6 @@ module DotGrid
 
       def page_height
         pdf.bounds.height
-      end
-
-      def draw_dot_grid(rows, columns, left_start, height_start)
-        pdf.fill_color grid_color
-        (1..rows).each do |row|
-          (1..columns).each do |col|
-            pdf.fill_circle [left_start + (col-1)*spacing, height_start - spacing - (row-1)*spacing], dot_weight
-          end
-        end
       end
     end
   end

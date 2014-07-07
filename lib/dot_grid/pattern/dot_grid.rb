@@ -11,9 +11,11 @@ module DotGrid
 
       def draw
         pdf.fill_color grid_color
-        (0..rows).each do |row|
-          (0..columns).each do |col|
-            pdf.fill_circle [col*spacing, row*spacing], dot_weight
+        pdf.bounding_box(bounds.upper_left, width: bounds.width, height: bounds.height) do
+          (0..rows).each do |row|
+            (0..columns).each do |col|
+              pdf.fill_circle [col*spacing, row*spacing], dot_weight
+            end
           end
         end
       end

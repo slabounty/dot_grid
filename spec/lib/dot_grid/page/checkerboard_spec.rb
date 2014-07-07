@@ -2,10 +2,13 @@ require 'spec_helper'
 
 describe "DotGrid::Page::Checkerboard" do
   describe "#post_initialize" do
-    let(:pdf) { double('pdf', bounds: double('bounds')) }
-    let(:subject) { DotGrid::Page::Checkerboard.new({pdf: pdf})}
+    let(:subject) { DotGrid::Page::Checkerboard.new({})}
 
-    it "draws the pattern" do
+    before do
+      allow(::DotGrid::Pattern::Checkerboard).to receive(:new)
+    end
+
+    it "adds the pattern" do
       expect(subject).to receive(:add_pattern)
       subject.post_initialize({})
     end

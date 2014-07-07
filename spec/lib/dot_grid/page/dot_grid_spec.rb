@@ -2,10 +2,13 @@ require 'spec_helper'
 
 describe "DotGrid::Page::DotGrid" do
   describe "#post_initialize" do
-    let(:pdf) { double('pdf', bounds: double('bounds')) }
-    let(:subject) { DotGrid::Page::DotGrid.new({pdf: pdf})}
+    let(:subject) { DotGrid::Page::DotGrid.new({})}
 
-    it "draws the pattern" do
+    before do
+      allow(::DotGrid::Pattern::DotGrid).to receive(:new)
+    end
+
+    it "adds the pattern" do
       expect(subject).to receive(:add_pattern)
       subject.post_initialize({})
     end

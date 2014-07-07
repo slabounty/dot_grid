@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "DotGrid::Pattern::Checkerboard" do
   let(:pdf) { double('pdf') }
-  let(:params) { { pdf: pdf, bounds: double('bounds', { height: 20.mm, width: 10.mm } ), spacing: 5 } }
+  let(:params) { { pdf: pdf, bounds: double('bounds', { upper_left: [0, 0], height: 20.mm, width: 10.mm } ), spacing: 5 } }
   let(:subject) { DotGrid::Pattern::Checkerboard.new(params) }
 
   describe "#rows" do
@@ -21,6 +21,7 @@ describe "DotGrid::Pattern::Checkerboard" do
     before do
       allow(pdf).to receive(:fill_color)
       allow(pdf).to receive(:fill_rectangle)
+      allow(pdf).to receive(:bounding_box).and_yield
     end
 
     it "sets the fill color" do

@@ -3,7 +3,7 @@ module DotGrid
     class Grid < Page
 
       def post_initialize(params)
-        add_pattern(::DotGrid::Pattern::Grid.new(params.merge!(:bounds => pdf.bounds)))
+        add_pattern(::DotGrid::Pattern::Grid.new(params))
       end
     end
   end
