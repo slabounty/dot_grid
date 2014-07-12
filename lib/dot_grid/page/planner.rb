@@ -21,7 +21,7 @@ module DotGrid
         @dot_weight = params[:dot_weight] || 1.5
         @grid_color = params[:grid_color] || "B3B3B3"
         @spacing = params[:spacing] ? params[:spacing].mm : 5.mm
-        add_pattern(::DotGrid::Pattern::SquareGrid.new(params.merge!(:bounds => square_grid_bounds)))
+        add_pattern(::DotGrid::Pattern::SquareGrid.new(params.merge!(:bounds => square_grid_bounds, grid_color: @planner_color_1)))
         add_pattern(::DotGrid::Pattern::DotGrid.new(params.merge!(:bounds => dot_grid_bounds)))
       end
 
