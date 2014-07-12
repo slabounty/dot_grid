@@ -13,8 +13,6 @@ module DotGrid
       HEADER_LEFT_START = 0.05           # 5.0%
       SQUARE_GRID_WIDTH = 0.30           # 30.0%
       HEADER_GAP_WIDTH = 0.03            # 3.0%
-      DOT_GRID_COLUMN_WIDTH = 0.62       # 62%
-      SQUARE_GRID_ROWS_WIDTH = 0.80      # 80%
       FOOT_HEIGHT_RATIO = 2              # Ratio of footer to header
 
       def post_initialize(params)
