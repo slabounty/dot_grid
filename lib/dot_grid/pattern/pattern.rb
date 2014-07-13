@@ -28,6 +28,16 @@ module DotGrid
         (bounds.width / spacing).floor
       end
 
+      def draw_grid(shorten = false)
+        pdf.bounding_box(bounds.upper_left, width: bounds.width, height: bounds.height) do
+          (0..(shorten ? rows-1 : rows)).each do |row|
+            (0..(shorten ? columns-1 : columns)).each do |column|
+              yield row, column
+            end
+          end
+        end
+      end
+
       def draw
         raise NotImplementedError
       end
