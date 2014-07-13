@@ -11,7 +11,7 @@ module DotGrid
 
       HEADER_HEIGHT = 0.05               # 5.0 %
       HEADER_LEFT_START = 0.05           # 5.0%
-      SQUARE_GRID_WIDTH = 0.30           # 30.0%
+      SQUARE_GRID_WIDTH = 0.32           # 32.0% - Basically, what looks good on 8.5 x 11
       HEADER_GAP_WIDTH = 0.03            # 3.0%
       FOOT_HEIGHT_RATIO = 2              # Ratio of footer to header
 
