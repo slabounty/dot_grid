@@ -1,4 +1,5 @@
 require 'dot_grid/generator'
+require 'dot_grid/bounding_box'
 
 require 'dot_grid/page/page'
 require 'dot_grid/page/dot_grid'
@@ -12,6 +13,7 @@ require 'dot_grid/pattern/grid'
 require 'dot_grid/pattern/dot_grid'
 require 'dot_grid/pattern/checkerboard'
 require 'dot_grid/pattern/horizontal_rule'
+require 'dot_grid/pattern/square_grid'
 
 module DotGrid
 end

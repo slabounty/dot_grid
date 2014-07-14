@@ -11,10 +11,8 @@ module DotGrid
 
       def draw
         pdf.fill_color grid_color
-        (0..rows).each do |row|
-          (0..columns).each do |col|
-            pdf.fill_circle [col*spacing, row*spacing], dot_weight
-          end
+        draw_grid do |row, column|
+          pdf.fill_circle [column*spacing, row*spacing], dot_weight
         end
       end
     end

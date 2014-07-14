@@ -3,11 +3,9 @@ module DotGrid
     class Grid < Pattern
       def draw
         pdf.stroke_color grid_color
-        (0..rows).each do |row|
-          pdf.stroke_horizontal_line(0, bounds.width, :at => row*spacing)
-        end
-        (0..columns).each do |column|
-          pdf.stroke_vertical_line(0, bounds.height, :at => column*spacing)
+        draw_grid do |row, column|
+          pdf.stroke_horizontal_line(0, bounds.width, :at => row*spacing) if column == 0
+          pdf.stroke_vertical_line(0, bounds.height, :at => column*spacing) if row == 0
         end
       end
     end

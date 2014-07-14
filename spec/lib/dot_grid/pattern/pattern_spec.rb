@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "DotGrid::Pattern::Pattern" do
 
   let(:pdf) { double('pdf') }
-  let(:params) { { pdf: pdf, bounds: double('bounds', { height: 20.mm, width: 10.mm } ), spacing: 5 } }
+  let(:params) { { pdf: pdf, bounds: double('bounds', { upper_left: [0, 0], height: 20.mm, width: 10.mm } ), spacing: 5 } }
   let(:subject) { DotGrid::Pattern::Pattern.new(params) }
 
   describe "#new" do
@@ -34,6 +34,15 @@ describe "DotGrid::Pattern::Pattern" do
   describe "#draw" do
     it "raises an error" do
       expect { subject.draw }.to raise_error
+    end
+  end
+
+  describe "#draw_grid" do
+    let(:pdf) { double('null object').as_null_object }
+
+    it "sets the bounding box" do
+      expect(pdf).to receive(:bounding_box)
+      subject.draw_grid
     end
   end
 end

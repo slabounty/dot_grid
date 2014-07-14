@@ -2,7 +2,13 @@ require 'spec_helper'
 
 describe "DotGrid::Page::Planner" do
   describe "#initialize" do
-    let(:subject) { DotGrid::Page::Planner.new({}) }
+    let(:pdf) { double('pdf') }
+    let(:bounds) { double('bounds', width: 10, height: 20) }
+    let(:subject) { DotGrid::Page::Planner.new({pdf: pdf}) }
+
+    before do
+      allow(pdf).to receive(:bounds).and_return(bounds)
+    end
 
     it "has a default planner color 1" do
       expect(subject.planner_color_1).to eq("CCCCCC")
@@ -15,45 +21,41 @@ describe "DotGrid::Page::Planner" do
 
   describe "#header_height" do
     let(:pdf) { double('pdf') }
+    let(:bounds) { double('bounds', width: 10, height: 20) }
     let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf }) }
+
+    before do
+      allow(pdf).to receive(:bounds).and_return(bounds)
+    end
 
     it "returns the HEADER_HEIGHT of the header height" do
       allow(subject).to receive(:page_height).and_return(20)
       expect(subject.header_height).to eq(DotGrid::Page::Planner::HEADER_HEIGHT * subject.page_height)
-    end
-  end
-
-  describe "#header_height" do
-    let(:pdf) { double('pdf') }
-    let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf }) }
-
-    it "returns the HEADER_HEIGHT of the header height" do
-      allow(subject).to receive(:page_height).and_return(20)
-      expect(subject.header_height).to eq(DotGrid::Page::Planner::HEADER_HEIGHT * subject.page_height)
-    end
-  end
-
-  describe "#square_grid_columns" do
-    let(:pdf) { double('pdf') }
-    let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf, spacing: 5 }) }
-
-    it "returns the HEADER_HEIGHT of the header height" do
-      allow(subject).to receive(:page_width).and_return(100)
-      expect(subject.square_grid_columns).to eq((DotGrid::Page::Planner::SQUARE_GRID_WIDTH * subject.page_width / subject.spacing).floor)
     end
   end
 
   describe "#header_left_color" do
+    let(:bounds) { double('bounds', width: 10, height: 20) }
     let(:pdf) { double('pdf') }
     let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf, planner_color_1: "DDEEFF" }) }
+
+    before do
+      allow(pdf).to receive(:bounds).and_return(bounds)
+    end
+
     it "returns the planner color 1" do
       expect(subject.header_left_color).to eq("DDEEFF")
     end
   end
 
   describe "#header_left_start" do
+    let(:bounds) { double('bounds', width: 10, height: 20) }
     let(:pdf) { double('pdf') }
     let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf }) }
+
+    before do
+      allow(pdf).to receive(:bounds).and_return(bounds)
+    end
 
     it "returns the the header left_start" do
       allow(subject).to receive(:page_width).and_return(30)
@@ -62,8 +64,13 @@ describe "DotGrid::Page::Planner" do
   end
 
   describe "#header_gap_width" do
+    let(:bounds) { double('bounds', width: 10, height: 20) }
     let(:pdf) { double('pdf') }
     let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf }) }
+
+    before do
+      allow(pdf).to receive(:bounds).and_return(bounds)
+    end
 
     it "returns the the header gap width" do
       allow(subject).to receive(:page_width).and_return(30)
@@ -72,28 +79,28 @@ describe "DotGrid::Page::Planner" do
   end
 
   describe "#header_right_color" do
+    let(:bounds) { double('bounds', width: 10, height: 20) }
     let(:pdf) { double('pdf') }
     let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf, planner_color_2: "FFEEDD" }) }
+
+    before do
+      allow(pdf).to receive(:bounds).and_return(bounds)
+    end
+
     it "returns the planner color 1" do
       expect(subject.header_right_color).to eq("FFEEDD")
     end
   end
 
-  describe "#dot_grid_rows" do
-    let(:pdf) { double('pdf') }
-    let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf }) }
-    let(:square_grid_rows) { 10 }
-
-    it "returns the foot height" do
-      allow(subject).to receive(:square_grid_rows).and_return(square_grid_rows)
-      expect(subject.dot_grid_rows).to eq(square_grid_rows+1)
-    end
-  end
-
   describe "#footer_height" do
+    let(:bounds) { double('bounds', width: 10, height: 20) }
     let(:pdf) { double('pdf') }
     let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf }) }
     let(:header_height) { 100 }
+
+    before do
+      allow(pdf).to receive(:bounds).and_return(bounds)
+    end
 
     it "returns the foot height" do
       allow(subject).to receive(:header_height).and_return(header_height)
@@ -102,40 +109,21 @@ describe "DotGrid::Page::Planner" do
   end
 
   describe "#generate" do
-    let(:pdf) { double('pdf') }
+    let(:pdf) { double('pdf', bounds: double('bounds', width: 10, height: 20)) }
     let(:subject) { DotGrid::Page::Planner.new({:pdf => pdf }) }
 
     before do
       allow(subject).to receive(:page_width).and_return(10)
       allow(subject).to receive(:page_height).and_return(20)
       allow(pdf).to receive(:start_new_page)
-      allow(pdf).to receive(:fill_color)
-      allow(pdf).to receive(:fill_rectangle)
-      allow(pdf).to receive(:fill_circle)
+      allow(subject).to receive(:draw_header).twice
+      allow(subject).to receive(:draw_footer)
+      allow_any_instance_of(::DotGrid::Pattern::SquareGrid).to receive(:draw)
+      allow_any_instance_of(::DotGrid::Pattern::DotGrid).to receive(:draw)
     end
 
-    it "starts a new page" do
-      expect(pdf).to receive(:start_new_page)
-      subject.generate
-    end
-
-    it "gets the page_width" do
-      expect(subject).to receive(:page_width)
-      subject.generate
-    end
-
-    it "gets the page_height" do
-      expect(subject).to receive(:page_height)
-      subject.generate
-    end
-
-    it "draws the left square grid" do
-      expect(subject).to receive(:draw_square_grid_left)
-      subject.generate
-    end
-
-    it "draws the dot grid" do
-      expect(subject).to receive(:draw_dot_grid)
+    it "draws the header" do
+      expect(subject).to receive(:draw_header).twice
       subject.generate
     end
 
