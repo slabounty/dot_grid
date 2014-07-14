@@ -36,4 +36,13 @@ describe "DotGrid::Pattern::Pattern" do
       expect { subject.draw }.to raise_error
     end
   end
+
+  describe "#draw_grid" do
+    let(:pdf) { double('null object').as_null_object }
+
+    it "sets the bounding box" do
+      expect(pdf).to receive(:bounding_box)
+      subject.draw_grid
+    end
+  end
 end
