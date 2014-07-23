@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec", '~> 2.14.1'
   gem.add_development_dependency "rake", '~> 10.3.2'
   gem.add_development_dependency "coveralls"
-  gem.add_dependency "prawn", '~> 1.0.0'
+  gem.add_dependency "prawn", '~> 1.1.0'
   gem.add_dependency "trollop", '~> 2.0'
   gem.add_dependency "require_all", '~> 1.3.2'
 end
