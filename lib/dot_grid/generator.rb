@@ -24,7 +24,7 @@ module DotGrid
 
     def create_pages(params)
       page_types.map do |p|
-        DotGrid::Page::Factory.build(p.strip, params)
+        DotGrid::Page::Factory.build(p.strip, params.clone)
       end
     end
 
