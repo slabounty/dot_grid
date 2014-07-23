@@ -16,13 +16,13 @@ describe "DotGrid::Generator" do
       expect(subject.margin).to eq(0.5)
     end
 
-    #it "creates a pdf file" do
-      #allow(subject).to receive(:create_pages)
-      #expect(Prawn::Document).to receive(:new)
-    #end
-  end
+    it "creates a pdf file" do
+      expect(subject.pdf).to be_a(Prawn::Document)
+    end
 
-  describe "#create_pages" do
+    it "creates the pages" do
+      expect(subject.page_types).to have(1).page
+    end
   end
 
   describe "#generate" do

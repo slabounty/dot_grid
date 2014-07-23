@@ -3,18 +3,17 @@ module DotGrid
     class Factory
       class UnknownPageExeception < Exception; end
 
-      def create_page(page_type, params)
-        raise UnknownPageExeception, "Unknown page type: #{page_type}" unless Page.available_pages.include? camel_case(page_type)
-        page_object(camel_case(page_type)).new(params)
-      end
+      PAGES = {
+        'dot_grid' => ::DotGrid::Page::DotGrid,
+        'planner' => ::DotGrid::Page::Planner,
+        'grid' => ::DotGrid::Page::Grid,
+        'horizontal_rule' => ::DotGrid::Page::HorizontalRule,
+        'checkerboard' => ::DotGrid::Page::Checkerboard
+      }
 
-      def camel_case(page_type)
-        return page_type if page_type !~ /_/ && page_type =~ /[A-Z]+.*/
-        page_type.split('_').map{|e| e.capitalize}.join
-      end
-
-      def page_object(page_type)
-        "DotGrid::Page::#{page_type}".split('::').inject(Object) {|o,c| o.const_get c}
+      def self.build(page_type, params)
+        raise UnknownPageExeception, "Unknown page type: #{page_type}" unless PAGES[page_type]
+        PAGES[page_type].new(params)
       end
     end
   end

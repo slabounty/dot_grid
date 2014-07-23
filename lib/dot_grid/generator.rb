@@ -23,8 +23,9 @@ module DotGrid
     end
 
     def create_pages(params)
-      page_factory = DotGrid::Page::Factory.new
-      page_types.map { |p| page_factory.create_page(p.strip, params) }
+      page_types.map do |p|
+        DotGrid::Page::Factory.build(p.strip, params)
+      end
     end
 
     def generate

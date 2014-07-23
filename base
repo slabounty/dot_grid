@@ -1,18 +1,18 @@
 # Base planner
-bin/dotgrid -f planner_w5_c2dfff_no_grid.pdf --no-dot-grid --grid-color CFBAEC --dot-weight 0.5 -m 0.0 --planner --planner-color-1 dddddd --planner-color-2 C2DFFF
-bin/dotgrid -f planner_w75_c2dfff_no_grid.pdf --no-dot-grid --grid-color CFBAEC --dot-weight 0.75 -m 0.0 --planner --planner-color-1 dddddd --planner-color-2 C2DFFF
+bin/dotgrid -f planner_w5_c2dfff_no_grid.pdf  --page-types planner --grid-color CFBAEC --dot-weight 0.5 -m 0.0 --planner-color-1 dddddd --planner-color-2 C2DFFF
+bin/dotgrid -f planner_w75_c2dfff_no_grid.pdf --page-types planner --grid-color CFBAEC --dot-weight 0.75 -m 0.0 --planner-color-1 dddddd --planner-color-2 C2DFFF
 
 # Dot grid
-bin/dotgrid -f dot_grid_c2dfff.pdf --dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
+bin/dotgrid -f dot_grid_c2dfff.pdf --page-types dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
 
 # Regular grid
-bin/dotgrid -f grid_c2dfff.pdf --grid --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
+bin/dotgrid -f grid_c2dfff.pdf --page-types grid  --spacing 5 --grid-color CFBAEC -m 0.0
 
 # Horizontal rule
-bin/dotgrid -f horizontal_rule_c2dfff.pdf --horizontal-rule --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
+bin/dotgrid -f horizontal_rule_c2dfff.pdf --page-types horizontal-rule  --spacing 5 --grid-color CFBAEC -m 0.0
 
 # Checkerboard
-bin/dotgrid -f checkerboard_c2dfff.pdf --checkerboard --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
+bin/dotgrid -f checkerboard_c2dfff.pdf --page-types checkerboard  --spacing 5 --grid-color CFBAEC -m 0.0
 
 # Page Types
-bin/dotgrid -f page_types.pdf --page-types "planner checkerboard, grid dot_grid" --no-dot-grid --spacing 5 --grid-color CFBAEC -m 0.0
+bin/dotgrid -f page_types.pdf --page-types "planner checkerboard, grid dot_grid"  --spacing 5 --grid-color CFBAEC -m 0.0
