@@ -6,6 +6,7 @@ module DotGrid
     attr_accessor(
       :pdf,
       :file_name,
+      :orientation,
       :page_size,
       :margin,
       :pages,
@@ -15,9 +16,10 @@ module DotGrid
     def initialize(params)
       @file_name = params[:file_name] || "dotgrid.pdf"
       @page_size = params[:page_size] ? parse_page_size(params[:page_size]) : "LETTER"
+      @orientation = params[:orientation] ? params[:orientation].downcase.to_sym : :portrait
       @margin = params[:margin] || 0.0
       @page_types = params[:page_types] ? params[:page_types].split(",") : ["planner"]
-      @pdf = Prawn::Document.new(margin: margin, page_size: page_size, skip_page_creation: true)
+      @pdf = Prawn::Document.new(margin: margin, page_size: page_size, skip_page_creation: true, page_layout: orientation)
       @pages = create_pages(params.merge({pdf: pdf}))
     end
 

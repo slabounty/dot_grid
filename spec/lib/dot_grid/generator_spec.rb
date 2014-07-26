@@ -12,6 +12,10 @@ describe "DotGrid::Generator" do
       expect(subject.page_size).to eq("LETTER")
     end
 
+    it "has a default file page orientation" do
+      expect(subject.orientation).to eq(:portrait)
+    end
+
     it "has a default file margin" do
       expect(subject.margin).to eq(0.0)
     end
