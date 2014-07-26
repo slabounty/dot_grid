@@ -13,7 +13,7 @@ describe "DotGrid::Generator" do
     end
 
     it "has a default file margin" do
-      expect(subject.margin).to eq(0.5)
+      expect(subject.margin).to eq(0.0)
     end
 
     it "creates a pdf file" do

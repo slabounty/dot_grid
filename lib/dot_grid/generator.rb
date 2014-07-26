@@ -15,7 +15,7 @@ module DotGrid
     def initialize(params)
       @file_name = params[:file_name] || "dotgrid.pdf"
       @page_size = params[:page_size] ? parse_page_size(params[:page_size]) : "LETTER"
-      @margin = params[:margin] || 0.5.mm
+      @margin = params[:margin] || 0.0
       @page_types = params[:page_types] ? params[:page_types].split(",") : ["planner"]
       @pdf = Prawn::Document.new(margin: margin, page_size: page_size, skip_page_creation: true)
       @pages = create_pages(params.merge({pdf: pdf}))
