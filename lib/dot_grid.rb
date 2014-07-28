@@ -1,4 +1,5 @@
 require 'dot_grid/generator'
+require 'dot_grid/document'
 require 'dot_grid/bounding_box'
 
 require 'dot_grid/page/page'
