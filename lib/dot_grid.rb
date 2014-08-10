@@ -1,3 +1,4 @@
+require 'dot_grid/version'
 require 'dot_grid/cli'
 require 'dot_grid/generator'
 require 'dot_grid/document'

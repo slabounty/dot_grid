@@ -5,6 +5,7 @@ module DotGrid
     def self.execute(argv)
 
       opts = Trollop::options argv do
+        version "dot_grid #{DotGrid::VERSION}"
         opt :file_name, "File Name", :type => :string, :default => "dotgrid.pdf"
         opt :orientation, "Orientation of pages (portrait/landscape)", type: :string, default: "portrait"
         opt :page_types, "Types of pages desired: Types of pages desired: DotGrid, Planner, Grid, HorizontalRule, Checkerboard", type: :string, default: "Planner"
