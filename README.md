@@ -13,19 +13,31 @@ A simple ruby file for generating dot grid graph paper.
 
 ## CLI
 
-A basic dot grid page can be generated like this ...
+### A basic dot grid page can be generated like this ...
+    dotgrid -f dot_grid.pdf --page-types dot-grid --spacing 5 --grid-color CFBAEC --dot-weight 0.5 -m 0.0
 
-    bin/dotgrid -f dot_grid.pdf --page-types dot-grid --spacing 5 --grid-color CFBAEC --dot-weight 0.5 -m 0.0
+### A basic planning page can be generated like this ...
+    dotgrid -f planner_w5_c2dfff.pdf  --page-types planner --grid-color CFBAEC --dot-weight 0.5 -m 0.0 --planner-color-1 dddddd --planner-color-2 C2DFFF
 
-A basic planning page can be generated like this ...
+### A regular grid page
+    dotgrid -f grid_c2dfff.pdf --page-types grid  --spacing 5 --grid-color CFBAEC --margin 0.0
 
-  bin/dotgrid -f planner_w5_c2dfff.pdf  --page-types planner --grid-color CFBAEC --dot-weight 0.5 -m 0.0 --planner-color-1 dddddd --planner-color-2 C2DFFF
+### A horizontal rule page
+    dotgrid -f horizontal_rule_c2dfff.pdf --page-types horizontal-rule  --spacing 5 --grid-color CFBAEC --margin 0.0
 
-To get help on the command and its options ...
-    bin/dotgrid --help
+### A checkerboard page
+    dotgrid -f checkerboard_c2dfff.pdf --page-types checkerboard  --spacing 5 --grid-color CFBAEC --margin 0.0
 
+### Multiple page types (either with no spaces after commas or in quotes).
+    dotgrid -f page_types.pdf --page-types "planner, checkerboard, grid, dot_grid"  --spacing 5 --grid-color CFBAEC --margin 0.0
 
-The options and their defaults are ...
+### All of the pages at once ...
+    dotgrid -f page_types.pdf --page-types "planner, checkerboard, grid, dot_grid, horizontal_rule" --spacing 5 --grid-color CFBAEC -m 0.0
+
+### To get help on the command and its options ...
+    dotgrid --help
+
+### The options and their defaults are ...
 
 <table>
 <thead>
