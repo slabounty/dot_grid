@@ -14,7 +14,7 @@ A simple ruby file for generating dot grid graph paper.
 ## CLI
 
 ### A basic dot grid page can be generated like this ...
-    dot_grid -f dot_grid.pdf --page-types dot-grid --spacing 5 --grid-color CFBAEC --dot-weight 0.5 -m 0.0
+    dot_grid -f dot_grid.pdf --page-types dot_grid --spacing 5 --grid-color CFBAEC --dot-weight 0.5 -m 0.0
 
 ### A basic planning page can be generated like this ...
     dot_grid -f planner_w5_c2dfff.pdf  --page-types planner --grid-color CFBAEC --dot-weight 0.5 -m 0.0 --planner-color-1 dddddd --planner-color-2 C2DFFF
@@ -23,7 +23,7 @@ A simple ruby file for generating dot grid graph paper.
     dot_grid -f grid_c2dfff.pdf --page-types grid  --spacing 5 --grid-color CFBAEC --margin 0.0
 
 ### A horizontal rule page
-    dot_grid -f horizontal_rule_c2dfff.pdf --page-types horizontal-rule  --spacing 5 --grid-color CFBAEC --margin 0.0
+    dot_grid -f horizontal_rule_c2dfff.pdf --page-types horizontal_rule  --spacing 5 --grid-color CFBAEC --margin 0.0
 
 ### A checkerboard page
     dot_grid -f checkerboard_c2dfff.pdf --page-types checkerboard  --spacing 5 --grid-color CFBAEC --margin 0.0
