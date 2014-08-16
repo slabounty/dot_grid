@@ -16,7 +16,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = DotGrid::VERSION
 
-  gem.add_development_dependency "rspec", '~> 2.14.1'
+  gem.add_development_dependency "rspec", '~> 3.0.0'
+  gem.add_development_dependency "rspec-collection_matchers", '~> 1.0.0'
   gem.add_development_dependency "rake", '~> 10.3.2'
   gem.add_development_dependency "coveralls", '~> 0.7.1'
   gem.add_dependency "prawn", '~> 1.2.1'
