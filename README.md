@@ -57,3 +57,8 @@ A simple ruby file for generating dot grid graph paper.
 <tr><td>planner-color-2</td><td>-n</td><td>0099FF</td></tr>
 </tbody>
 </table>
+
+## Acknowledgements
+
+The planner page is based on the Frictionless planning pad
+(https://squareup.com/market/frictionless) 
