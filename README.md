@@ -22,6 +22,9 @@ A simple ruby file for generating dot grid graph paper.
 ### A regular grid page
     dot_grid -f grid_c2dfff.pdf --page-types grid  --spacing 5 --grid-color CFBAEC --margin 0.0
 
+### A grid + lines page
+    dot_grid -f grid_plus_lines_c2dfff.pdf --page-types grid_plus_lines  --spacing 5 --grid-color CFBAEC --margin 0.0
+
 ### A horizontal rule page
     dot_grid -f horizontal_rule_c2dfff.pdf --page-types horizontal_rule  --spacing 5 --grid-color CFBAEC --margin 0.0
 
@@ -32,7 +35,7 @@ A simple ruby file for generating dot grid graph paper.
     dot_grid -f page_types.pdf --page-types "planner, checkerboard, grid, dot_grid"  --spacing 5 --grid-color CFBAEC --margin 0.0
 
 ### All of the pages at once ...
-    dot_grid -f page_types.pdf --page-types "planner, checkerboard, grid, dot_grid, horizontal_rule" --spacing 5 --grid-color CFBAEC -m 0.0
+    dot_grid -f page_types.pdf --page-types "planner, checkerboard, grid, dot_grid, horizontal_rule, grid_plus_lines" --spacing 5 --grid-color CFBAEC -m 0.0
 
 ### To get help on the command and its options ...
     dot_grid --help
@@ -47,7 +50,7 @@ A simple ruby file for generating dot grid graph paper.
 </thead>
 <tbody>
 <tr><td>file-name</td><td>-f</td><td>dotgrid.pdf</td></tr>
-<tr><td>page-types</td><td>-p</td><td>Types of pages desired: DotGrid, Planner, Grid, HorizontalRule, Checkerboard (default: Planner)</td></tr>
+<tr><td>page-types</td><td>-p</td><td>Types of pages desired: planner, checkerboard, grid, dot_grid, horizontal_rule, grid_plus_lines (default: planner)</td></tr>
 <tr><td>dot-weight</td><td>-d</td><td>1.5</td></tr>
 <tr><td>margin</td><td>-m</td><td>0.5</td></tr>
 <tr><td>page-size</td><td>-a</td><td>LETTER</td></tr>
@@ -62,3 +65,6 @@ A simple ruby file for generating dot grid graph paper.
 
 The planner page is based on the Frictionless planning pad
 (https://squareup.com/market/frictionless) 
+
+The grid plus lines is similar to the Doane Paper grid + lines paper
+(http://doanepaper.bigcartel.com/products)

@@ -8,7 +8,7 @@ module DotGrid
         version "dot_grid #{DotGrid::VERSION}"
         opt :file_name, "File Name", :type => :string, :default => "dotgrid.pdf"
         opt :orientation, "Orientation of pages (portrait/landscape)", type: :string, default: "portrait"
-        opt :page_types, "Types of pages desired: Types of pages desired: DotGrid, Planner, Grid, HorizontalRule, Checkerboard", type: :string, default: "planner"
+        opt :page_types, "Types of pages desired: Types of pages desired: planner, checkerboard, grid, dot_grid, horizontal_rule, grid_plus_lines", type: :string, default: "planner"
         opt :dot_weight, "Dot Weight", :type => :float, :default => 1.5
         opt :margin, "Border", :type => :float, :default => 0.0
         opt :page_size, "Page Size (LEGAL, LETTER)", :type => :string, :default => "LETTER"
