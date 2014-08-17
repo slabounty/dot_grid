@@ -7,6 +7,7 @@ module DotGrid
         'dot_grid'        => ::DotGrid::Page::DotGrid,
         'planner'         => ::DotGrid::Page::Planner,
         'grid'            => ::DotGrid::Page::Grid,
+        'grid_plus_lines' => ::DotGrid::Page::GridPlusLines,
         'horizontal_rule' => ::DotGrid::Page::HorizontalRule,
         'checkerboard'    => ::DotGrid::Page::Checkerboard
       }
