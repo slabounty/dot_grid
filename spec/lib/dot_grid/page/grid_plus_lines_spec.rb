@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "DotGrid::Page::GridPlusLines" do
   describe "#post_initialize" do
-    let(:subject) { DotGrid::Page::Grid.new({})}
+    let(:subject) { DotGrid::Page::GridPlusLines.new({})}
 
     before do
-      allow(::DotGrid::Pattern::Grid).to receive(:new)
+      allow(::DotGrid::Pattern::GridPlusLines).to receive(:new)
     end
 
     it "draws the pattern" do
