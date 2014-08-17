@@ -50,7 +50,7 @@ A simple ruby file for generating dot grid graph paper.
 </thead>
 <tbody>
 <tr><td>file-name</td><td>-f</td><td>dotgrid.pdf</td></tr>
-<tr><td>page-types</td><td>-p</td><td>Types of pages desired: DotGrid, Planner, Grid, HorizontalRule, Checkerboard (default: Planner)</td></tr>
+<tr><td>page-types</td><td>-p</td><td>Types of pages desired: planner, checkerboard, grid, dot_grid, horizontal_rule, grid_plus_lines (default: planner)</td></tr>
 <tr><td>dot-weight</td><td>-d</td><td>1.5</td></tr>
 <tr><td>margin</td><td>-m</td><td>0.5</td></tr>
 <tr><td>page-size</td><td>-a</td><td>LETTER</td></tr>
@@ -65,3 +65,6 @@ A simple ruby file for generating dot grid graph paper.
 
 The planner page is based on the Frictionless planning pad
 (https://squareup.com/market/frictionless) 
+
+The grid plus lines is similar to the Doane Paper grid + lines paper
+(http://doanepaper.bigcartel.com/products)
