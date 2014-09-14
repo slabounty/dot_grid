@@ -9,7 +9,8 @@ module DotGrid
         'grid'            => ::DotGrid::Page::Grid,
         'grid_plus_lines' => ::DotGrid::Page::GridPlusLines,
         'horizontal_rule' => ::DotGrid::Page::HorizontalRule,
-        'checkerboard'    => ::DotGrid::Page::Checkerboard
+        'checkerboard'    => ::DotGrid::Page::Checkerboard,
+        'dot_dash'        => ::DotGrid::Page::DotDash,
       }
 
       def self.build(page_type, params)
