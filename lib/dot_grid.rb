@@ -3,6 +3,7 @@ require 'dot_grid/cli'
 require 'dot_grid/generator'
 require 'dot_grid/document'
 require 'dot_grid/bounding_box'
+require 'dot_grid/color'
 
 require 'dot_grid/page/page'
 require 'dot_grid/page/dot_grid'

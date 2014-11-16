@@ -7,7 +7,7 @@ module DotGrid
       end
 
       def draw
-        pdf.fill_color grid_color
+        pdf.fill_color grid_color.color_str
         draw_grid do |row, column|
           pdf.fill_rectangle [column*spacing, row*spacing], spacing, spacing if draw_square?(row, column)
         end

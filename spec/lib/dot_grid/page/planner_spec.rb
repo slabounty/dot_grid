@@ -11,11 +11,11 @@ describe "DotGrid::Page::Planner" do
     end
 
     it "has a default planner color 1" do
-      expect(subject.planner_color_1).to eq("CCCCCC")
+      expect(subject.planner_color_1.color_str).to eq("CCCCCC")
     end
 
     it "has a default planner color 2" do
-      expect(subject.planner_color_2).to eq("0099ff")
+      expect(subject.planner_color_2.color_str).to eq("0099FF")
     end
   end
 

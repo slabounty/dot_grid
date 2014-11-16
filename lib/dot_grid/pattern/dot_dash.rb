@@ -14,8 +14,8 @@ module DotGrid
 
       def draw
         pdf.line_width @dot_weight
-        pdf.fill_color grid_color
-        pdf.stroke_color grid_color
+        pdf.fill_color grid_color.color_str
+        pdf.stroke_color grid_color.color_str
         draw_grid do |row, column|
           pdf.fill_circle [column*spacing, row*spacing], dot_weight
           pdf.stroke_horizontal_line(column*spacing+POST_DOT_SPACING*spacing, column*spacing+spacing*TO_LENGTH, :at => row*spacing) 

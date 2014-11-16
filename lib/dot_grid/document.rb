@@ -19,7 +19,21 @@ module DotGrid
       @page_types = params[:page_types] ? params[:page_types].downcase.split(",").map { |w| w.strip } : ["planner"]
 
       @pdf = Prawn::Document.new(margin: margin, page_size: page_size, skip_page_creation: true, page_layout: orientation)
-      @pages = create_pages(params.merge({pdf: pdf}))
+      @pages = create_pages(page_params(params))
+    end
+
+    def page_params(params)
+      {
+        pdf: @pdf,
+        dot_weight: (params[:dot_weight] || 1.5),
+        spacing: (params[:spacing] || 5),
+        #grid_color: params[:grid_color] || "B3B3B3",
+        #planner_color_1: params[:planner_color_1] || "CCCCCC",
+        #planner_color_2: params[:planner_color_2] || "0099ff",
+        grid_color: ::DotGrid::Color.new(params[:grid_color] || "B3B3B3"),
+        planner_color_1: ::DotGrid::Color.new(params[:planner_color_1] || "CCCCCC"),
+        planner_color_2: ::DotGrid::Color.new(params[:planner_color_2] || "0099ff"),
+      }
     end
 
     def parse_page_size(page_size)
