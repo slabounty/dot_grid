@@ -16,10 +16,10 @@ module DotGrid
       FOOT_HEIGHT_RATIO = 2              # Ratio of footer to header
 
       def post_initialize(params)
-        @planner_color_1 = params[:planner_color_1] || "CCCCCC"
-        @planner_color_2 = params[:planner_color_2] || "0099ff"
+        @planner_color_1 = params[:planner_color_1] || ::DotGrid::Color.new("CCCCCC")
+        @planner_color_2 = params[:planner_color_2] || ::DotGrid::Color.new("0099FF")
+        @grid_color = params[:grid_color] || ::DotGrid::Color.new("B3B3B3")
         @dot_weight = params[:dot_weight] || 1.5
-        @grid_color = params[:grid_color] || "B3B3B3"
         @spacing = params[:spacing] ? params[:spacing].mm : 5.mm
         add_pattern(::DotGrid::Pattern::SquareGrid.new(params.merge!(:bounds => square_grid_bounds, grid_color: @planner_color_1)))
         add_pattern(::DotGrid::Pattern::DotGrid.new(params.merge!(:bounds => dot_grid_bounds)))
@@ -95,12 +95,12 @@ module DotGrid
       end
 
       def draw_header(header_start, header_width, header_height, header_color)
-        pdf.fill_color header_color
+        pdf.fill_color header_color.color_str
         pdf.fill_rectangle [header_start, page_height], header_width, header_height
       end
 
       def draw_footer(footer_color, footer_start, footer_height, footer_width)
-        pdf.fill_color footer_color
+        pdf.fill_color footer_color.color_str
         pdf.fill_rectangle [footer_start, footer_height], footer_width, footer_height
       end
 

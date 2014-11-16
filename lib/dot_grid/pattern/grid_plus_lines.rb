@@ -17,7 +17,7 @@ module DotGrid
       end
 
       def draw
-        pdf.stroke_color grid_color
+        pdf.stroke_color grid_color.color_str
         draw_grid do |row, column|
           draw_row(row) if column == 0
           draw_column(column) if row == 0
