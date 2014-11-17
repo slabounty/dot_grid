@@ -21,6 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec-collection_matchers", '~> 1.0.0'
   gem.add_development_dependency "rake", '~> 10.3.2'
   gem.add_development_dependency "coveralls", '~> 0.7.1'
-  gem.add_dependency "prawn", '~> 1.2.1'
+  gem.add_dependency "prawn", '~> 1.3.0'
   gem.add_dependency "trollop", '~> 2.0'
 end

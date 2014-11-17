@@ -11,6 +11,7 @@ module DotGrid
         'horizontal_rule' => ::DotGrid::Page::HorizontalRule,
         'checkerboard'    => ::DotGrid::Page::Checkerboard,
         'dot_dash'        => ::DotGrid::Page::DotDash,
+        'line_printer'    => ::DotGrid::Page::LinePrinter,
       }
 
       def self.build(page_type, params)

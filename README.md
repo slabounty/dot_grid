@@ -37,6 +37,9 @@ A simple ruby file for generating dot grid graph paper.
 ### A basic dot dash page can be generated like this ...
     dot_grid -f dot_dash.pdf --page-types dot_dash --spacing 5 --grid-color CFBAEC --dot-weight 0.5 -m 0.0
 
+### A basic line printer page can be generated like this ...
+    dot_grid -f line_printer.pdf --page-types line_printer --spacing 15 --grid-color dddddd --planner-color-1 d7e7dd --dot-weight 5.0 -m 0.0 --page-size 14x11in
+
 ### All of the pages at once ...
     dot_grid -f page_types.pdf --page-types "planner, checkerboard, grid, dot_grid, horizontal_rule, grid_plus_lines, dot_dash" --spacing 5 --grid-color CFBAEC -m 0.0
 
