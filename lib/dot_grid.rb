@@ -13,6 +13,7 @@ require 'dot_grid/page/grid_plus_lines'
 require 'dot_grid/page/horizontal_rule'
 require 'dot_grid/page/checkerboard'
 require 'dot_grid/page/dot_dash'
+require 'dot_grid/page/line_printer'
 require 'dot_grid/page/factory'
 
 require 'dot_grid/pattern/pattern'
@@ -22,6 +23,7 @@ require 'dot_grid/pattern/dot_grid'
 require 'dot_grid/pattern/checkerboard'
 require 'dot_grid/pattern/horizontal_rule'
 require 'dot_grid/pattern/dot_dash'
+require 'dot_grid/pattern/line_printer'
 require 'dot_grid/pattern/square_grid'
 
 module DotGrid
